@@ -1,0 +1,121 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "amiibo": "https://amiiboapi.org/api/",
+    "amiiboSeries": {
+      "@id": "amiibo:amiiboSeries",
+      "@type": "@id"
+    },
+    "character": "amiibo:character",
+    "gameSeries": "amiibo:gameSeries",
+    "head": "amiibo:head",
+    "tail": "amiibo:tail",
+    "image": {
+      "@id": "schema:image",
+      "@type": "@id"
+    },
+    "imgwebp": {
+      "@id": "amiibo:imgwebp",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "type": "schema:additionalType",
+    "release": "amiibo:release",
+    "na": "amiibo:releaseNA",
+    "eu": "amiibo:releaseEU",
+    "jp": "amiibo:releaseJP",
+    "au": "amiibo:releaseAU",
+    "gamesSwitch": "amiibo:gamesSwitch",
+    "games3DS": "amiibo:games3DS",
+    "gamesWiiU": "amiibo:gamesWiiU",
+    "gameID": "amiibo:gameID",
+    "gameName": "amiibo:gameName",
+    "usage": "amiibo:usage",
+    "Usage": "amiibo:usageDescription",
+    "write": "amiibo:writeEnabled",
+    "lastUpdated": "schema:dateModified",
+    "key": "amiibo:key"
+  },
+  "@type": "WebAPI",
+  "@id": "https://amiiboapi.org/api/",
+  "name": "Amiibo API",
+  "description": "A free RESTful API providing comprehensive data about Nintendo Amiibo figures, including character details, game series, amiibo series classifications, regional release dates, and compatible game information.",
+  "url": "https://amiiboapi.org/",
+  "documentation": "https://amiiboapi.org/docs/",
+  "provider": {
+    "@type": "Person",
+    "name": "Nevin Vu",
+    "url": "https://github.com/N3evin"
+  },
+  "license": "https://github.com/N3evin/AmiiboAPI/blob/master/LICENSE",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "potentialAction": [
+    {
+      "@type": "SearchAction",
+      "name": "Get Amiibo",
+      "target": "https://amiiboapi.org/api/amiibo/?name={name}",
+      "query-input": "required name=name"
+    },
+    {
+      "@type": "SearchAction",
+      "name": "Get Amiibo by Character",
+      "target": "https://amiiboapi.org/api/amiibo/?character={character}",
+      "query-input": "required name=character"
+    },
+    {
+      "@type": "SearchAction",
+      "name": "Get Amiibo by Game Series",
+      "target": "https://amiiboapi.org/api/amiibo/?gameseries={gameseries}",
+      "query-input": "required name=gameseries"
+    }
+  ],
+  "availableChannel": [
+    {
+      "@type": "ServiceChannel",
+      "name": "GET /api/amiibo/",
+      "serviceUrl": "https://amiiboapi.org/api/amiibo/",
+      "description": "Retrieve Amiibo figures with optional filters"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "GET /api/amiibofull/",
+      "serviceUrl": "https://amiiboapi.org/api/amiibofull/",
+      "description": "Retrieve Amiibo figures with full game compatibility data"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "GET /api/type/",
+      "serviceUrl": "https://amiiboapi.org/api/type/",
+      "description": "Retrieve Amiibo type classifications"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "GET /api/gameseries/",
+      "serviceUrl": "https://amiiboapi.org/api/gameseries/",
+      "description": "Retrieve game series reference data"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "GET /api/amiiboseries/",
+      "serviceUrl": "https://amiiboapi.org/api/amiiboseries/",
+      "description": "Retrieve Amiibo series reference data"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "GET /api/character/",
+      "serviceUrl": "https://amiiboapi.org/api/character/",
+      "description": "Retrieve character reference data"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "GET /api/lastupdated/",
+      "serviceUrl": "https://amiiboapi.org/api/lastupdated/",
+      "description": "Retrieve the last database update timestamp"
+    }
+  ]
+}

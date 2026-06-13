@@ -43,6 +43,12 @@ apis:
         url: https://amiiboapi.org/docs/
       - type: GitHubOrg
         url: https://github.com/N3evin/AmiiboAPI
+      - type: OpenAPI
+        url: openapi/amiibo-openapi.yml
+      - type: JSONSchema
+        url: json-schema/amiibo-schema.json
+      - type: JSONLd
+        url: json-ld/amiibo-jsonld.json
       - type: Plans
         url: plans/amiibo-plans-pricing.yml
       - type: RateLimits

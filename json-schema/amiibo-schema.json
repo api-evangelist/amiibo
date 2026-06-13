@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amiibo/main/json-schema/amiibo-schema.json",
+  "title": "Amiibo API Schemas",
+  "description": "JSON Schema definitions for the AmiiboAPI responses",
+  "$defs": {
+    "AmiiboRelease": {
+      "type": "object",
+      "title": "Amiibo Release Dates",
+      "description": "Regional release dates for an Amiibo figure.",
+      "properties": {
+        "au": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Release date in Australia (YYYY-MM-DD) or null.",
+          "examples": ["2014-11-29"]
+        },
+        "eu": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Release date in Europe (YYYY-MM-DD) or null.",
+          "examples": ["2014-11-28"]
+        },
+        "jp": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Release date in Japan (YYYY-MM-DD) or null.",
+          "examples": ["2014-12-06"]
+        },
+        "na": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Release date in North America (YYYY-MM-DD) or null.",
+          "examples": ["2014-11-21"]
+        }
+      },
+      "required": ["au", "eu", "jp", "na"],
+      "additionalProperties": false
+    },
+    "GameEntry": {
+      "type": "object",
+      "title": "Game Entry",
+      "description": "A game compatible with the Amiibo on a given platform.",
+      "properties": {
+        "gameID": {
+          "type": "array",
+          "description": "List of title IDs for this game on the platform.",
+          "items": {
+            "type": "string"
+          },
+          "examples": [["01007EF00011E000"]]
+        },
+        "gameName": {
+          "type": "string",
+          "description": "Name of the compatible game.",
+          "examples": ["The Legend of Zelda: Breath of the Wild"]
+        }
+      },
+      "required": ["gameID", "gameName"],
+      "additionalProperties": false
+    },
+    "GameUsageEntry": {
+      "type": "object",
+      "title": "Game Usage Entry",
+      "description": "A game compatible with the Amiibo including usage details.",
+      "properties": {
+        "gameID": {
+          "type": "array",
+          "description": "List of title IDs for this game on the platform.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gameName": {
+          "type": "string",
+          "description": "Name of the compatible game."
+        },
+        "usage": {
+          "type": "array",
+          "description": "List of usage descriptions for this Amiibo in the game.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Usage": {
+                "type": "string",
+                "description": "Description of how the Amiibo is used."
+              },
+              "write": {
+                "type": "boolean",
+                "description": "Whether the Amiibo can be written to by this game."
+              }
+            },
+            "required": ["Usage", "write"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["gameID", "gameName", "usage"],
+      "additionalProperties": false
+    },
+    "Amiibo": {
+      "type": "object",
+      "title": "Amiibo",
+      "description": "Core Amiibo figure data.",
+      "properties": {
+        "amiiboSeries": {
+          "type": "string",
+          "description": "Name of the Amiibo series this figure belongs to.",
+          "examples": ["Super Smash Bros."]
+        },
+        "character": {
+          "type": "string",
+          "description": "Name of the character represented by this Amiibo.",
+          "examples": ["Link"]
+        },
+        "gameSeries": {
+          "type": "string",
+          "description": "Name of the game series this Amiibo is associated with.",
+          "examples": ["The Legend of Zelda"]
+        },
+        "head": {
+          "type": "string",
+          "description": "First 8 hex characters of the Amiibo ID.",
+          "pattern": "^[0-9a-fA-F]{8}$",
+          "examples": ["01000000"]
+        },
+        "tail": {
+          "type": "string",
+          "description": "Last 8 hex characters of the Amiibo ID.",
+          "pattern": "^[0-9a-fA-F]{8}$",
+          "examples": ["03560902"]
+        },
+        "image": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the PNG image of the Amiibo figure.",
+          "examples": ["https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png"]
+        },
+        "imgwebp": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the WebP image of the Amiibo figure.",
+          "examples": ["https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp"]
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the Amiibo figure.",
+          "examples": ["Link"]
+        },
+        "type": {
+          "type": "string",
+          "description": "Type classification (Figure, Card, Yarn, Band).",
+          "enum": ["Figure", "Card", "Yarn", "Band"],
+          "examples": ["Figure"]
+        },
+        "release": {
+          "$ref": "#/$defs/AmiiboRelease"
+        }
+      },
+      "required": ["amiiboSeries", "character", "gameSeries", "head", "tail", "image", "name", "type", "release"]
+    },
+    "AmiiboFull": {
+      "allOf": [
+        { "$ref": "#/$defs/Amiibo" },
+        {
+          "type": "object",
+          "title": "Amiibo Full",
+          "description": "Amiibo with complete game compatibility and usage data.",
+          "properties": {
+            "gamesSwitch": {
+              "type": "array",
+              "description": "Compatible Nintendo Switch games with usage info.",
+              "items": { "$ref": "#/$defs/GameUsageEntry" }
+            },
+            "games3DS": {
+              "type": "array",
+              "description": "Compatible Nintendo 3DS games with usage info.",
+              "items": { "$ref": "#/$defs/GameUsageEntry" }
+            },
+            "gamesWiiU": {
+              "type": "array",
+              "description": "Compatible Wii U games with usage info.",
+              "items": { "$ref": "#/$defs/GameUsageEntry" }
+            }
+          }
+        }
+      ]
+    },
+    "ReferenceItem": {
+      "type": "object",
+      "title": "Reference Item",
+      "description": "A reference data item with a hex key and human-readable name.",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Hexadecimal key identifier.",
+          "examples": ["0x00"]
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable name.",
+          "examples": ["Figure"]
+        }
+      },
+      "required": ["key", "name"],
+      "additionalProperties": false
+    },
+    "AmiiboListResponse": {
+      "type": "object",
+      "title": "Amiibo List Response",
+      "description": "Response envelope containing a list of Amiibo figures.",
+      "properties": {
+        "amiibo": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Amiibo" }
+        }
+      },
+      "required": ["amiibo"],
+      "additionalProperties": false
+    },
+    "AmiiboFullListResponse": {
+      "type": "object",
+      "title": "Amiibo Full List Response",
+      "description": "Response envelope containing Amiibo figures with full game data.",
+      "properties": {
+        "amiibo": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AmiiboFull" }
+        }
+      },
+      "required": ["amiibo"],
+      "additionalProperties": false
+    },
+    "ReferenceListResponse": {
+      "type": "object",
+      "title": "Reference List Response",
+      "description": "Response envelope containing a list of reference data items.",
+      "properties": {
+        "amiibo": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ReferenceItem" }
+        }
+      },
+      "required": ["amiibo"],
+      "additionalProperties": false
+    },
+    "LastUpdatedResponse": {
+      "type": "object",
+      "title": "Last Updated Response",
+      "description": "Response containing the last database update timestamp.",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of the last database update.",
+          "examples": ["2023-10-01T00:00:00+01:00"]
+        }
+      },
+      "required": ["lastUpdated"],
+      "additionalProperties": false
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "title": "Error Response",
+      "description": "Error response returned for 4xx status codes.",
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "Human-readable error message.",
+          "examples": ["Not Found: The requested URL was not found on the server."]
+        },
+        "code": {
+          "type": "integer",
+          "description": "HTTP status code.",
+          "examples": [404]
+        }
+      },
+      "required": ["error", "code"],
+      "additionalProperties": false
+    }
+  }
+}

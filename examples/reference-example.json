@@ -1,0 +1,45 @@
+{
+  "types": {
+    "amiibo": [
+      { "key": "0x00", "name": "Figure" },
+      { "key": "0x01", "name": "Card" },
+      { "key": "0x02", "name": "Yarn" },
+      { "key": "0x03", "name": "Band" }
+    ]
+  },
+  "gameseries": {
+    "amiibo": [
+      { "key": "0x0000", "name": "Super Mario" },
+      { "key": "0x0004", "name": "Donkey Kong" },
+      { "key": "0x0008", "name": "The Legend of Zelda" },
+      { "key": "0x0010", "name": "Metroid" },
+      { "key": "0x0014", "name": "Kirby" },
+      { "key": "0x0018", "name": "Star Fox" },
+      { "key": "0x001C", "name": "Pokemon" },
+      { "key": "0x0020", "name": "Pikmin" },
+      { "key": "0x0024", "name": "EarthBound" },
+      { "key": "0x0028", "name": "F-Zero" },
+      { "key": "0x002C", "name": "Game & Watch" },
+      { "key": "0x0034", "name": "Kid Icarus" },
+      { "key": "0x0038", "name": "WarioWare" },
+      { "key": "0x003C", "name": "Pikmin" },
+      { "key": "0x0040", "name": "Fire Emblem" },
+      { "key": "0x0044", "name": "Animal Crossing" }
+    ]
+  },
+  "character": {
+    "amiibo": [
+      { "key": "0x0000", "name": "Mario" },
+      { "key": "0x0001", "name": "Luigi" },
+      { "key": "0x0002", "name": "Peach" },
+      { "key": "0x0003", "name": "Yoshi" },
+      { "key": "0x0004", "name": "Rosalina" },
+      { "key": "0x0100", "name": "Link" },
+      { "key": "0x0101", "name": "Zelda" },
+      { "key": "0x0102", "name": "Ganondorf" }
+    ]
+  },
+  "lastupdated": {
+    "lastUpdated": "2023-10-01T00:00:00+01:00"
+  }
+}

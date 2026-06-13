@@ -1,0 +1,38 @@
+{
+  "amiibo": [
+    {
+      "amiiboSeries": "The Legend of Zelda",
+      "character": "Link",
+      "gameSeries": "The Legend of Zelda",
+      "head": "01000000",
+      "tail": "03560902",
+      "image": "https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png",
+      "imgwebp": "https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp",
+      "name": "Link",
+      "type": "Figure",
+      "release": {
+        "au": "2014-11-29",
+        "eu": "2014-11-28",
+        "jp": "2014-12-06",
+        "na": "2014-11-21"
+      }
+    },
+    {
+      "amiiboSeries": "Super Smash Bros.",
+      "character": "Mario",
+      "gameSeries": "Super Mario",
+      "head": "00000000",
+      "tail": "00000002",
+      "image": "https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_00000000-00000002.png",
+      "imgwebp": "https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_00000000-00000002.webp",
+      "name": "Mario",
+      "type": "Figure",
+      "release": {
+        "au": "2014-11-29",
+        "eu": "2014-11-28",
+        "jp": "2014-05-29",
+        "na": "2014-11-21"
+      }
+    }
+  ]
+}

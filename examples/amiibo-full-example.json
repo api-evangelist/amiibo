@@ -1,0 +1,57 @@
+{
+  "amiibo": [
+    {
+      "amiiboSeries": "The Legend of Zelda",
+      "character": "Link",
+      "gameSeries": "The Legend of Zelda",
+      "head": "01000000",
+      "tail": "03560902",
+      "image": "https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png",
+      "imgwebp": "https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp",
+      "name": "Link",
+      "type": "Figure",
+      "release": {
+        "au": "2014-11-29",
+        "eu": "2014-11-28",
+        "jp": "2014-12-06",
+        "na": "2014-11-21"
+      },
+      "gamesSwitch": [
+        {
+          "gameID": ["01007EF00011E000"],
+          "gameName": "The Legend of Zelda: Breath of the Wild",
+          "usage": [
+            {
+              "Usage": "Unlock a new costume based on this Amiibo",
+              "write": false
+            }
+          ]
+        }
+      ],
+      "games3DS": [
+        {
+          "gameID": ["000400000018BF00"],
+          "gameName": "Hyrule Warriors Legends",
+          "usage": [
+            {
+              "Usage": "Unlock costume or weapon",
+              "write": false
+            }
+          ]
+        }
+      ],
+      "gamesWiiU": [
+        {
+          "gameID": ["0005000010145F00"],
+          "gameName": "Hyrule Warriors",
+          "usage": [
+            {
+              "Usage": "Unlock weapon or costume",
+              "write": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
