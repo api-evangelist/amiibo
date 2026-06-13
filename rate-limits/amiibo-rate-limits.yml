@@ -1,0 +1,29 @@
+name: Amiibo API Rate Limits
+description: >-
+  AmiiboAPI does not publish explicit rate limits in its documentation. The API
+  is free and open with no authentication requirements. While no hard rate limits
+  are enforced or documented, users are encouraged to implement client-side
+  caching to reduce unnecessary load on the service. The project recommends
+  caching responses if calling the API regularly.
+limits:
+  - name: Default
+    description: >-
+      No documented rate limit. The API is publicly available without
+      authentication. Heavy usage patterns should implement local caching
+      to reduce server load.
+    requests_per_second: null
+    requests_per_minute: null
+    requests_per_hour: null
+    requests_per_day: null
+    concurrent_connections: null
+    enforcement: None documented
+recommendations:
+  - Implement client-side caching for repeated identical requests
+  - The amiibo dataset is relatively static; cache responses for at least
+    24 hours where appropriate
+  - Avoid polling endpoints in rapid loops; fetch and cache the full dataset
+    when performing bulk lookups
+notes: >-
+  No official rate limit policy is published. The API is a community-supported
+  project running on AWS at an approximate monthly cost of $50. Respectful
+  usage and caching are encouraged to help keep the service free and operational.

@@ -1,0 +1,29 @@
+name: Amiibo API Plans and Pricing
+description: >-
+  AmiiboAPI is a free, community-maintained RESTful API with no commercial
+  pricing tiers. The service is operated as a public good by Nevin Vu and costs
+  approximately $50/month to operate on AWS infrastructure. Donations are
+  accepted to help sustain the service.
+plans:
+  - name: Free
+    description: >-
+      Full access to all Amiibo API endpoints at no cost. No API key or
+      registration required. All amiibo data including characters, game series,
+      release dates, and compatible games is available under this plan.
+    url: https://amiiboapi.org/
+    rate_limits: null
+    authentication: None
+    features:
+      - Full access to all amiibo data endpoints
+      - No API key required
+      - No registration required
+      - Filter by name, character, gameSeries, amiiboSeries, type, head, tail
+      - Compatible games data (3DS, Wii U, Switch)
+      - Regional release dates (NA, EU, JP, AU)
+      - CORS enabled
+      - HTTPS supported
+notes: >-
+  The project is community-funded and accepts donations at https://amiiboapi.org/
+  to help offset the approximately $50/month AWS hosting costs. The GitHub
+  repository (N3evin/AmiiboAPI) was archived on December 31, 2025, but the API
+  service continues at amiiboapi.org with ongoing data updates.

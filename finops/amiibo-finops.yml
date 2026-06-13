@@ -1,0 +1,37 @@
+name: Amiibo API FinOps
+description: >-
+  Financial and operational profile for the AmiiboAPI. This is a free
+  community-maintained API with no commercial monetization. All costs are
+  borne by the API creator and supported through optional community donations.
+model: Community-Funded Free API
+monetization: None
+cost_to_consumer: Free
+estimated_provider_cost:
+  amount: 50
+  currency: USD
+  period: monthly
+  infrastructure: AWS
+  notes: >-
+    The API operator (Nevin Vu) publicly noted the service costs approximately
+    $50/month to run on AWS infrastructure. Community donations are accepted
+    to help offset these costs.
+funding:
+  - type: Donations
+    url: https://amiiboapi.org/
+    description: Voluntary community donations accepted via the project website
+  - type: Self-funded
+    description: Operated and funded by the individual creator Nevin Vu
+cost_optimization:
+  - Implement response caching (the dataset changes infrequently)
+  - Fetch bulk data once rather than making per-item requests
+  - Cache the complete amiibo list locally and update on a schedule
+  - Use ETags or Last-Modified headers if supported to avoid re-fetching
+    unchanged data
+sla: None documented
+support: Community-based via GitHub issues (repository archived Dec 31, 2025)
+notes: >-
+  AmiiboAPI is a non-commercial public good. There is no SLA, no paid support
+  tier, and no enterprise offering. Organizations depending on this data should
+  consider self-hosting using the open-source MIT-licensed codebase available
+  at https://github.com/N3evin/AmiiboAPI or contributing to the community
+  to ensure long-term sustainability.

@@ -1,0 +1,70 @@
+aid: amiibo
+name: Amiibo API
+description: >-
+  AmiiboAPI is a free RESTful API providing comprehensive data about Nintendo
+  Amiibo figures, including character details, game series, amiibo series
+  classifications, regional release dates, and compatible game information
+  across 3DS, Wii U, and Nintendo Switch platforms. The API requires no
+  authentication and supports filtering by name, character, game series, type,
+  and hexadecimal identifiers.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/amiibo/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Nintendo
+  - Amiibo
+  - Gaming
+  - Figures
+  - Characters
+  - Video Games
+  - REST
+apis:
+  - aid: amiibo:amiibo-api
+    name: Amiibo API
+    description: >-
+      A RESTful API that provides detailed information about Nintendo Amiibo
+      figures, including character data, game series, amiibo series, type
+      classifications, regional release dates (NA, EU, JP, AU), and compatible
+      game lists for 3DS, Wii U, and Nintendo Switch. Supports filtering by
+      name, character, gameSeries, amiiboSeries, type, and hexadecimal head/tail
+      identifiers. No API key or authentication required.
+    humanURL: https://amiiboapi.org/
+    baseURL: https://amiiboapi.org/api/
+    tags:
+      - Nintendo
+      - Amiibo
+      - Gaming
+      - Figures
+      - Characters
+    properties:
+      - type: Documentation
+        url: https://amiiboapi.org/docs/
+      - type: GitHubOrg
+        url: https://github.com/N3evin/AmiiboAPI
+      - type: Plans
+        url: plans/amiibo-plans-pricing.yml
+      - type: RateLimits
+        url: rate-limits/amiibo-rate-limits.yml
+      - type: FinOps
+        url: finops/amiibo-finops.yml
+    contact:
+      - FN: Nevin Vu
+        url: https://amiiboapi.org/
+common:
+  - type: Website
+    url: https://amiiboapi.org/
+  - type: Documentation
+    url: https://amiiboapi.org/docs/
+  - type: GitHubOrg
+    url: https://github.com/N3evin/AmiiboAPI
+  - type: Plans
+    url: plans/amiibo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/amiibo-rate-limits.yml
+  - type: FinOps
+    url: finops/amiibo-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
