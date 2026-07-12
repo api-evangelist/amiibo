@@ -59,6 +59,8 @@ apis:
       - FN: Nevin Vu
         url: https://amiiboapi.org/
 common:
+  - type: DomainSecurity
+    url: security/amiibo-domain-security.yml
   - type: Website
     url: https://amiiboapi.org/
   - type: Documentation
