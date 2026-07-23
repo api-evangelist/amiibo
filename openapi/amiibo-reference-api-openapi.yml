@@ -1,0 +1,259 @@
+openapi: 3.0.3
+info:
+  title: Amiibo Reference API
+  description: AmiiboAPI is a free RESTful API providing comprehensive data about Nintendo Amiibo figures, including character details, game series, amiibo series classifications, regional release dates, and compatible game information across 3DS, Wii U, and Nintendo Switch platforms. The API requires no authentication and supports filtering by name, character, game series, type, and hexadecimal identifiers.
+  version: 1.0.0
+  contact:
+    name: Nevin Vu
+    url: https://amiiboapi.org/
+  license:
+    name: MIT
+    url: https://github.com/N3evin/AmiiboAPI/blob/master/LICENSE
+servers:
+- url: https://amiiboapi.org/api
+  description: Production API server
+tags:
+- name: Reference
+  description: Reference data endpoints for types, series, characters, and game series
+paths:
+  /type/:
+    get:
+      operationId: getAmiiboTypes
+      summary: Get Amiibo types
+      description: Returns all Amiibo type classifications or filters by key or name. Types include Figure, Card, Yarn, and Band.
+      tags:
+      - Reference
+      parameters:
+      - name: key
+        in: query
+        description: Hexadecimal key identifier for the type.
+        required: false
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9a-fA-F]+$
+          example: '0x00'
+      - name: name
+        in: query
+        description: Filter by type name.
+        required: false
+        schema:
+          type: string
+          example: Figure
+      - name: sort
+        in: query
+        description: Sort by key or name.
+        required: false
+        schema:
+          type: string
+          enum:
+          - key
+          - name
+      responses:
+        '200':
+          description: Successful response with list of Amiibo types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceListResponse'
+              examples:
+                types:
+                  $ref: '#/components/examples/TypeListExample'
+        '404':
+          description: Type not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /gameseries/:
+    get:
+      operationId: getGameSeries
+      summary: Get game series
+      description: Returns all game series associated with Amiibo figures or filters by hexadecimal key or name.
+      tags:
+      - Reference
+      parameters:
+      - name: key
+        in: query
+        description: Hexadecimal key identifier for the game series.
+        required: false
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9a-fA-F]+$
+          example: '0x0000'
+      - name: name
+        in: query
+        description: Filter by game series name.
+        required: false
+        schema:
+          type: string
+          example: The Legend of Zelda
+      - name: sort
+        in: query
+        description: Sort by key or name.
+        required: false
+        schema:
+          type: string
+          enum:
+          - key
+          - name
+      responses:
+        '200':
+          description: Successful response with list of game series
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceListResponse'
+        '404':
+          description: Game series not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /amiiboseries/:
+    get:
+      operationId: getAmiiboSeries
+      summary: Get Amiibo series
+      description: Returns all Amiibo series classifications or filters by hexadecimal key or name. Examples include Super Smash Bros., The Legend of Zelda, and Pokemon.
+      tags:
+      - Reference
+      parameters:
+      - name: key
+        in: query
+        description: Hexadecimal key identifier for the Amiibo series.
+        required: false
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9a-fA-F]+$
+          example: '0x00'
+      - name: name
+        in: query
+        description: Filter by Amiibo series name.
+        required: false
+        schema:
+          type: string
+          example: Super Smash Bros.
+      - name: sort
+        in: query
+        description: Sort by key or name.
+        required: false
+        schema:
+          type: string
+          enum:
+          - key
+          - name
+      responses:
+        '200':
+          description: Successful response with list of Amiibo series
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceListResponse'
+        '404':
+          description: Amiibo series not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /character/:
+    get:
+      operationId: getCharacters
+      summary: Get characters
+      description: Returns all characters associated with Amiibo figures or filters by hexadecimal key or name.
+      tags:
+      - Reference
+      parameters:
+      - name: key
+        in: query
+        description: Hexadecimal key identifier for the character.
+        required: false
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9a-fA-F]+$
+          example: '0x0000'
+      - name: name
+        in: query
+        description: Filter by character name.
+        required: false
+        schema:
+          type: string
+          example: Link
+      - name: sort
+        in: query
+        description: Sort by key or name.
+        required: false
+        schema:
+          type: string
+          enum:
+          - key
+          - name
+      responses:
+        '200':
+          description: Successful response with list of characters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceListResponse'
+        '404':
+          description: Character not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ReferenceListResponse:
+      type: object
+      description: Response envelope for a list of reference data items.
+      properties:
+        amiibo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceItem'
+      required:
+      - amiibo
+    ReferenceItem:
+      type: object
+      description: A reference data item with a hexadecimal key and name.
+      properties:
+        key:
+          type: string
+          description: Hexadecimal key identifier.
+          example: '0x00'
+        name:
+          type: string
+          description: Human-readable name.
+          example: Figure
+      required:
+      - key
+      - name
+    ErrorResponse:
+      type: object
+      description: Error response body.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+          example: 'Not Found: The requested URL was not found on the server.'
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 404
+      required:
+      - error
+      - code
+  examples:
+    TypeListExample:
+      summary: List of Amiibo types
+      value:
+        amiibo:
+        - key: '0x00'
+          name: Figure
+        - key: '0x01'
+          name: Card
+        - key: '0x02'
+          name: Yarn
+        - key: '0x03'
+          name: Band
+externalDocs:
+  description: Official AmiiboAPI Documentation
+  url: https://amiiboapi.org/docs/

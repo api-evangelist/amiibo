@@ -1,0 +1,495 @@
+openapi: 3.0.3
+info:
+  title: Amiibo API
+  description: AmiiboAPI is a free RESTful API providing comprehensive data about Nintendo Amiibo figures, including character details, game series, amiibo series classifications, regional release dates, and compatible game information across 3DS, Wii U, and Nintendo Switch platforms. The API requires no authentication and supports filtering by name, character, game series, type, and hexadecimal identifiers.
+  version: 1.0.0
+  contact:
+    name: Nevin Vu
+    url: https://amiiboapi.org/
+  license:
+    name: MIT
+    url: https://github.com/N3evin/AmiiboAPI/blob/master/LICENSE
+servers:
+- url: https://amiiboapi.org/api
+  description: Production API server
+tags:
+- name: Amiibo
+  description: Endpoints for retrieving Amiibo figure data
+paths:
+  /amiibo/:
+    get:
+      operationId: getAmiibo
+      summary: Get Amiibo figures
+      description: Returns all Amiibo figures or filters by provided query parameters. Supports optional modifiers to include compatible game data and usage information. Results can be sorted by various fields.
+      tags:
+      - Amiibo
+      parameters:
+      - name: id
+        in: query
+        description: Full 16-character hexadecimal Amiibo identifier (combination of head and tail).
+        required: false
+        schema:
+          type: string
+          pattern: ^[0-9a-fA-F]{16}$
+          example: '0000000000000002'
+      - name: head
+        in: query
+        description: First 8 hexadecimal characters of the Amiibo ID representing game series, character, variant, and type.
+        required: false
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9a-fA-F]{1,8}$
+          example: '00000000'
+      - name: tail
+        in: query
+        description: Last 8 hexadecimal characters of the Amiibo ID representing the amiibo model and series.
+        required: false
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9a-fA-F]{1,8}$
+          example: '00000002'
+      - name: name
+        in: query
+        description: Filter by Amiibo name (case-insensitive substring match).
+        required: false
+        schema:
+          type: string
+          example: Link
+      - name: character
+        in: query
+        description: Filter by character name or hexadecimal character ID (prefix with 0x for hex).
+        required: false
+        schema:
+          type: string
+          example: Link
+      - name: gameseries
+        in: query
+        description: Filter by game series name or hexadecimal game series ID (prefix with 0x for hex).
+        required: false
+        schema:
+          type: string
+          example: The Legend of Zelda
+      - name: amiiboSeries
+        in: query
+        description: Filter by Amiibo series name or hexadecimal amiibo series ID (prefix with 0x for hex).
+        required: false
+        schema:
+          type: string
+          example: Super Smash Bros.
+      - name: type
+        in: query
+        description: Filter by Amiibo type name (e.g., Figure, Card, Yarn) or hexadecimal type ID (prefix with 0x for hex).
+        required: false
+        schema:
+          type: string
+          example: Figure
+      - name: variant
+        in: query
+        description: Filter by hexadecimal variant ID.
+        required: false
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9a-fA-F]+$
+      - name: amiibo_model
+        in: query
+        description: Filter by hexadecimal Amiibo model ID.
+        required: false
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9a-fA-F]+$
+      - name: switch_titleid
+        in: query
+        description: Filter by Nintendo Switch game title ID.
+        required: false
+        schema:
+          type: string
+      - name: wiiu_titleid
+        in: query
+        description: Filter by Wii U game title ID.
+        required: false
+        schema:
+          type: string
+      - name: 3ds_titleid
+        in: query
+        description: Filter by Nintendo 3DS game title ID.
+        required: false
+        schema:
+          type: string
+      - name: showgames
+        in: query
+        description: When present, includes compatible game data for each Amiibo (games for 3DS, Wii U, and Switch with title IDs).
+        required: false
+        schema:
+          type: boolean
+      - name: showusage
+        in: query
+        description: When present, includes compatible game data along with usage information describing how the Amiibo is used in each game.
+        required: false
+        schema:
+          type: boolean
+      - name: sort
+        in: query
+        description: 'Comma-separated list of fields to sort by. Valid values: id, head, tail, name, gameseries, gameseries_id, gameseries_name, character, character_id, character_name, variant, variant_id, type, type_id, type_name, amiibo_model, amiibo_model_id, series, series_id, series_name, release_na, release_jp, release_eu, release_au.'
+        required: false
+        schema:
+          type: string
+          example: name,release_na
+      responses:
+        '200':
+          description: Successful response with list of Amiibo figures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmiiboListResponse'
+              examples:
+                basic:
+                  $ref: '#/components/examples/AmiiboListExample'
+                withGames:
+                  $ref: '#/components/examples/AmiiboWithGamesExample'
+        '400':
+          description: Bad request — invalid hex identifier format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No Amiibo found matching the provided filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /amiibofull/:
+    get:
+      operationId: getAmiiboFull
+      summary: Get Amiibo figures with full game compatibility data
+      description: Returns Amiibo figures with complete game compatibility information including games for 3DS, Wii U, and Nintendo Switch. Supports the same filtering and sorting parameters as /amiibo/.
+      tags:
+      - Amiibo
+      parameters:
+      - name: id
+        in: query
+        description: Full 16-character hexadecimal Amiibo identifier.
+        required: false
+        schema:
+          type: string
+          pattern: ^[0-9a-fA-F]{16}$
+      - name: head
+        in: query
+        description: First 8 hexadecimal characters of the Amiibo ID.
+        required: false
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9a-fA-F]{1,8}$
+      - name: tail
+        in: query
+        description: Last 8 hexadecimal characters of the Amiibo ID.
+        required: false
+        schema:
+          type: string
+          pattern: ^(0x)?[0-9a-fA-F]{1,8}$
+      - name: name
+        in: query
+        description: Filter by Amiibo name.
+        required: false
+        schema:
+          type: string
+      - name: character
+        in: query
+        description: Filter by character name or hex ID.
+        required: false
+        schema:
+          type: string
+      - name: gameseries
+        in: query
+        description: Filter by game series name or hex ID.
+        required: false
+        schema:
+          type: string
+      - name: amiiboSeries
+        in: query
+        description: Filter by Amiibo series name or hex ID.
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Filter by type name or hex ID.
+        required: false
+        schema:
+          type: string
+      - name: variant
+        in: query
+        description: Filter by variant hex ID.
+        required: false
+        schema:
+          type: string
+      - name: amiibo_model
+        in: query
+        description: Filter by Amiibo model hex ID.
+        required: false
+        schema:
+          type: string
+      - name: switch_titleid
+        in: query
+        description: Filter by Nintendo Switch game title ID.
+        required: false
+        schema:
+          type: string
+      - name: wiiu_titleid
+        in: query
+        description: Filter by Wii U game title ID.
+        required: false
+        schema:
+          type: string
+      - name: 3ds_titleid
+        in: query
+        description: Filter by Nintendo 3DS game title ID.
+        required: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: 'Comma-separated list of fields to sort by. Valid values: id, head, tail, name, gameseries, gameseries_id, gameseries_name, switch_titleid, 3ds_titleid, wiiu_titleid, character, character_id, character_name, variant, variant_id, type, type_id, type_name, amiibo_model, amiibo_model_id, series, series_id, series_name, release_na, release_jp, release_eu, release_au.'
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with Amiibo figures including full game data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmiiboFullListResponse'
+        '400':
+          description: Bad request — invalid hex identifier format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No Amiibo found matching the provided filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    GameUsageEntry:
+      type: object
+      description: A game compatible with the Amiibo including usage information.
+      properties:
+        gameID:
+          type: array
+          description: List of title IDs for this game on the platform.
+          items:
+            type: string
+        gameName:
+          type: string
+          description: Name of the compatible game.
+        usage:
+          type: array
+          description: List of usage descriptions for this Amiibo in the game.
+          items:
+            type: object
+            properties:
+              Usage:
+                type: string
+                description: Description of how the Amiibo is used in this game.
+              write:
+                type: boolean
+                description: Whether this Amiibo can be written to by this game.
+    Amiibo:
+      type: object
+      description: Core Amiibo figure data.
+      properties:
+        amiiboSeries:
+          type: string
+          description: Name of the Amiibo series this figure belongs to.
+          example: Super Smash Bros.
+        character:
+          type: string
+          description: Name of the character represented by this Amiibo.
+          example: Link
+        gameSeries:
+          type: string
+          description: Name of the game series this Amiibo is associated with.
+          example: The Legend of Zelda
+        head:
+          type: string
+          description: First 8 hexadecimal characters of the Amiibo ID encoding game series, character, variant, and type.
+          pattern: ^[0-9a-fA-F]{8}$
+          example: '01000000'
+        tail:
+          type: string
+          description: Last 8 hexadecimal characters of the Amiibo ID encoding model and series.
+          pattern: ^[0-9a-fA-F]{8}$
+          example: 03560902
+        image:
+          type: string
+          format: uri
+          description: URL to the JPEG image of the Amiibo figure.
+          example: https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png
+        imgwebp:
+          type: string
+          format: uri
+          description: URL to the WebP image of the Amiibo figure.
+          example: https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp
+        name:
+          type: string
+          description: Display name of the Amiibo figure.
+          example: Link
+        type:
+          type: string
+          description: Type classification of the Amiibo (e.g., Figure, Card, Yarn, Band).
+          example: Figure
+        release:
+          $ref: '#/components/schemas/AmiiboRelease'
+      required:
+      - amiiboSeries
+      - character
+      - gameSeries
+      - head
+      - tail
+      - image
+      - name
+      - type
+      - release
+    ErrorResponse:
+      type: object
+      description: Error response body.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+          example: 'Not Found: The requested URL was not found on the server.'
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 404
+      required:
+      - error
+      - code
+    AmiiboGamesWithUsage:
+      type: object
+      description: Compatible games with usage data organized by platform.
+      properties:
+        gamesSwitch:
+          type: array
+          description: Compatible Nintendo Switch games with usage info.
+          items:
+            $ref: '#/components/schemas/GameUsageEntry'
+        games3DS:
+          type: array
+          description: Compatible Nintendo 3DS games with usage info.
+          items:
+            $ref: '#/components/schemas/GameUsageEntry'
+        gamesWiiU:
+          type: array
+          description: Compatible Wii U games with usage info.
+          items:
+            $ref: '#/components/schemas/GameUsageEntry'
+    AmiiboFull:
+      allOf:
+      - $ref: '#/components/schemas/Amiibo'
+      - $ref: '#/components/schemas/AmiiboGamesWithUsage'
+      description: Complete Amiibo data including game compatibility and usage information.
+    AmiiboListResponse:
+      type: object
+      description: Response envelope for a list of Amiibo figures.
+      properties:
+        amiibo:
+          type: array
+          items:
+            $ref: '#/components/schemas/Amiibo'
+      required:
+      - amiibo
+    AmiiboRelease:
+      type: object
+      description: Regional release dates for the Amiibo figure.
+      properties:
+        au:
+          type: string
+          format: date
+          nullable: true
+          description: Release date in Australia (YYYY-MM-DD) or null if not released.
+          example: '2014-11-29'
+        eu:
+          type: string
+          format: date
+          nullable: true
+          description: Release date in Europe (YYYY-MM-DD) or null if not released.
+          example: '2014-11-28'
+        jp:
+          type: string
+          format: date
+          nullable: true
+          description: Release date in Japan (YYYY-MM-DD) or null if not released.
+          example: '2014-05-29'
+        na:
+          type: string
+          format: date
+          nullable: true
+          description: Release date in North America (YYYY-MM-DD) or null if not released.
+          example: '2014-11-21'
+    AmiiboFullListResponse:
+      type: object
+      description: Response envelope for a list of Amiibo figures with full game data.
+      properties:
+        amiibo:
+          type: array
+          items:
+            $ref: '#/components/schemas/AmiiboFull'
+      required:
+      - amiibo
+  examples:
+    AmiiboWithGamesExample:
+      summary: Amiibo with game compatibility data (showgames)
+      value:
+        amiibo:
+        - amiiboSeries: The Legend of Zelda
+          character: Link
+          gameSeries: The Legend of Zelda
+          head: '01000000'
+          tail: 03560902
+          image: https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png
+          imgwebp: https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp
+          name: Link
+          type: Figure
+          release:
+            au: '2014-11-29'
+            eu: '2014-11-28'
+            jp: '2014-12-06'
+            na: '2014-11-21'
+          gamesSwitch:
+          - gameID:
+            - 01007EF00011E000
+            gameName: 'The Legend of Zelda: Breath of the Wild'
+          games3DS:
+          - gameID:
+            - 000400000018BF00
+            gameName: Hyrule Warriors Legends
+          gamesWiiU:
+          - gameID:
+            - 0005000010145F00
+            gameName: Hyrule Warriors
+    AmiiboListExample:
+      summary: List of Amiibo figures (basic)
+      value:
+        amiibo:
+        - amiiboSeries: The Legend of Zelda
+          character: Link
+          gameSeries: The Legend of Zelda
+          head: '01000000'
+          tail: 03560902
+          image: https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png
+          imgwebp: https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp
+          name: Link
+          type: Figure
+          release:
+            au: '2014-11-29'
+            eu: '2014-11-28'
+            jp: '2014-12-06'
+            na: '2014-11-21'
+externalDocs:
+  description: Official AmiiboAPI Documentation
+  url: https://amiiboapi.org/docs/

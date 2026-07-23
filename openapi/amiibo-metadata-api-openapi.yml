@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  title: Amiibo Metadata API
+  description: AmiiboAPI is a free RESTful API providing comprehensive data about Nintendo Amiibo figures, including character details, game series, amiibo series classifications, regional release dates, and compatible game information across 3DS, Wii U, and Nintendo Switch platforms. The API requires no authentication and supports filtering by name, character, game series, type, and hexadecimal identifiers.
+  version: 1.0.0
+  contact:
+    name: Nevin Vu
+    url: https://amiiboapi.org/
+  license:
+    name: MIT
+    url: https://github.com/N3evin/AmiiboAPI/blob/master/LICENSE
+servers:
+- url: https://amiiboapi.org/api
+  description: Production API server
+tags:
+- name: Metadata
+  description: API metadata endpoints
+paths:
+  /lastupdated/:
+    get:
+      operationId: getLastUpdated
+      summary: Get last updated timestamp
+      description: Returns the timestamp indicating when the Amiibo database was last updated. Useful for cache invalidation.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: Successful response with last updated timestamp
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LastUpdatedResponse'
+              examples:
+                lastUpdated:
+                  $ref: '#/components/examples/LastUpdatedExample'
+components:
+  schemas:
+    LastUpdatedResponse:
+      type: object
+      description: Response containing the last database update timestamp.
+      properties:
+        lastUpdated:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last database update.
+          example: '2023-10-01T00:00:00+01:00'
+      required:
+      - lastUpdated
+  examples:
+    LastUpdatedExample:
+      summary: Last updated timestamp
+      value:
+        lastUpdated: '2023-10-01T00:00:00+01:00'
+externalDocs:
+  description: Official AmiiboAPI Documentation
+  url: https://amiiboapi.org/docs/
