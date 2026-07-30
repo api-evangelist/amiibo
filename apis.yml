@@ -7,7 +7,19 @@ description: >-
   across 3DS, Wii U, and Nintendo Switch platforms. The API requires no
   authentication and supports filtering by name, character, game series, type,
   and hexadecimal identifiers.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Free · Open access
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amiibo.png
 url: https://raw.githubusercontent.com/api-evangelist/amiibo/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -21,43 +33,78 @@ tags:
   - Video Games
   - REST
 apis:
-  - aid: amiibo:amiibo-api
-    name: Amiibo API
-    description: >-
-      A RESTful API that provides detailed information about Nintendo Amiibo
-      figures, including character data, game series, amiibo series, type
-      classifications, regional release dates (NA, EU, JP, AU), and compatible
-      game lists for 3DS, Wii U, and Nintendo Switch. Supports filtering by
-      name, character, gameSeries, amiiboSeries, type, and hexadecimal head/tail
-      identifiers. No API key or authentication required.
-    humanURL: https://amiiboapi.org/
-    baseURL: https://amiiboapi.org/api/
-    tags:
-      - Nintendo
-      - Amiibo
-      - Gaming
-      - Figures
-      - Characters
-    properties:
-      - type: Documentation
-        url: https://amiiboapi.org/docs/
-      - type: GitHubOrg
-        url: https://github.com/N3evin/AmiiboAPI
-      - type: OpenAPI
-        url: openapi/amiibo-openapi.yml
-      - type: JSONSchema
-        url: json-schema/amiibo-schema.json
-      - type: JSONLD
-        url: json-ld/amiibo-jsonld.json
-      - type: Plans
-        url: plans/amiibo-plans-pricing.yml
-      - type: RateLimits
-        url: rate-limits/amiibo-rate-limits.yml
-      - type: FinOps
-        url: finops/amiibo-finops.yml
-    contact:
-      - FN: Nevin Vu
-        url: https://amiiboapi.org/
+- aid: amiibo:amiibo-amiibo-api
+  name: Amiibo API Amiibo API
+  description: Endpoints for retrieving Amiibo figure data
+  humanURL: https://amiiboapi.org/
+  baseURL: https://amiiboapi.org/api/
+  tags:
+  - Amiibo
+  properties:
+  - type: OpenAPI
+    url: openapi/amiibo-amiibo-api-openapi.yml
+  - type: Documentation
+    url: https://amiiboapi.org/docs/
+  - type: GitHubOrg
+    url: https://github.com/N3evin/AmiiboAPI
+  - type: JSONSchema
+    url: json-schema/amiibo-schema.json
+  - type: JSONLD
+    url: json-ld/amiibo-jsonld.json
+  - type: Plans
+    url: plans/amiibo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/amiibo-rate-limits.yml
+  - type: FinOps
+    url: finops/amiibo-finops.yml
+- aid: amiibo:amiibo-metadata-api
+  name: Amiibo API Metadata API
+  description: API metadata endpoints
+  humanURL: https://amiiboapi.org/
+  baseURL: https://amiiboapi.org/api/
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/amiibo-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://amiiboapi.org/docs/
+  - type: GitHubOrg
+    url: https://github.com/N3evin/AmiiboAPI
+  - type: JSONSchema
+    url: json-schema/amiibo-schema.json
+  - type: JSONLD
+    url: json-ld/amiibo-jsonld.json
+  - type: Plans
+    url: plans/amiibo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/amiibo-rate-limits.yml
+  - type: FinOps
+    url: finops/amiibo-finops.yml
+- aid: amiibo:amiibo-reference-api
+  name: Amiibo API Reference API
+  description: Reference data endpoints for types, series, characters, and game series
+  humanURL: https://amiiboapi.org/
+  baseURL: https://amiiboapi.org/api/
+  tags:
+  - Reference
+  properties:
+  - type: OpenAPI
+    url: openapi/amiibo-reference-api-openapi.yml
+  - type: Documentation
+    url: https://amiiboapi.org/docs/
+  - type: GitHubOrg
+    url: https://github.com/N3evin/AmiiboAPI
+  - type: JSONSchema
+    url: json-schema/amiibo-schema.json
+  - type: JSONLD
+    url: json-ld/amiibo-jsonld.json
+  - type: Plans
+    url: plans/amiibo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/amiibo-rate-limits.yml
+  - type: FinOps
+    url: finops/amiibo-finops.yml
 common:
   - type: AgenticAccess
     url: agentic-access/amiibo-agentic-access.yml
