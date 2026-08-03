@@ -1,0 +1,18 @@
+{
+  "provider": "amiibo",
+  "sources": [
+    "amiibo-amiibo-api-openapi.yml",
+    "amiibo-metadata-api-openapi.yml",
+    "amiibo-reference-api-openapi.yml"
+  ],
+  "outputs": [
+    "amiibo-amiibo-api-openapi.yml",
+    "amiibo-metadata-api-openapi.yml",
+    "amiibo-reference-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
