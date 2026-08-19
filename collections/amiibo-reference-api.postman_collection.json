@@ -1,0 +1,644 @@
+{
+  "item": [
+    {
+      "id": "ac56b14d-05e6-44f8-852d-340014eadc64",
+      "name": "Reference",
+      "description": {
+        "content": "Reference data endpoints for types, series, characters, and game series",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a692754-5121-4da7-a865-d4f192a4e892",
+          "name": "Get Amiibo types",
+          "request": {
+            "name": "Get Amiibo types",
+            "description": {
+              "content": "Returns all Amiibo type classifications or filters by key or name. Types include Figure, Card, Yarn, and Band.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "type",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "Hexadecimal key identifier for the type."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by type name."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort by key or name."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e745ae8-08a4-4880-8725-24af62acd452",
+              "name": "Successful response with list of Amiibo types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "type",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "0x00"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Figure"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amiibo\": [\n    {\n      \"key\": \"0x00\",\n      \"name\": \"Figure\"\n    },\n    {\n      \"key\": \"0x01\",\n      \"name\": \"Card\"\n    },\n    {\n      \"key\": \"0x02\",\n      \"name\": \"Yarn\"\n    },\n    {\n      \"key\": \"0x03\",\n      \"name\": \"Band\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "270af5ee-fa83-430c-8cca-265630aa2cc3",
+              "name": "Type not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "type",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "0x00"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Figure"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found: The requested URL was not found on the server.\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef3549a5-3a0f-4ce7-93c2-4c85ff5e0ccc",
+          "name": "Get game series",
+          "request": {
+            "name": "Get game series",
+            "description": {
+              "content": "Returns all game series associated with Amiibo figures or filters by hexadecimal key or name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gameseries",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "Hexadecimal key identifier for the game series."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by game series name."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort by key or name."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "934379e8-9716-4e16-8365-049b75b66bd1",
+              "name": "Successful response with list of game series",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gameseries",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "0x0000"
+                    },
+                    {
+                      "key": "name",
+                      "value": "The Legend of Zelda"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amiibo\": [\n    {\n      \"key\": \"0x00\",\n      \"name\": \"Figure\"\n    },\n    {\n      \"key\": \"0x00\",\n      \"name\": \"Figure\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b65789b6-0244-4a99-aac8-9de0a09b00c0",
+              "name": "Game series not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gameseries",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "0x0000"
+                    },
+                    {
+                      "key": "name",
+                      "value": "The Legend of Zelda"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found: The requested URL was not found on the server.\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "602a59b7-97e9-4b48-bc75-dbacb1f06495",
+          "name": "Get Amiibo series",
+          "request": {
+            "name": "Get Amiibo series",
+            "description": {
+              "content": "Returns all Amiibo series classifications or filters by hexadecimal key or name. Examples include Super Smash Bros., The Legend of Zelda, and Pokemon.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "amiiboseries",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "Hexadecimal key identifier for the Amiibo series."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by Amiibo series name."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort by key or name."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57b496bd-36f6-4aee-a7f7-ce657b9664f1",
+              "name": "Successful response with list of Amiibo series",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "amiiboseries",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "0x00"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Super Smash Bros."
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amiibo\": [\n    {\n      \"key\": \"0x00\",\n      \"name\": \"Figure\"\n    },\n    {\n      \"key\": \"0x00\",\n      \"name\": \"Figure\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "601abba2-724f-47b9-a658-22864dc9cb78",
+              "name": "Amiibo series not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "amiiboseries",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "0x00"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Super Smash Bros."
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found: The requested URL was not found on the server.\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b007bbb-ea2b-4a86-afe7-bd72d2f26af3",
+          "name": "Get characters",
+          "request": {
+            "name": "Get characters",
+            "description": {
+              "content": "Returns all characters associated with Amiibo figures or filters by hexadecimal key or name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "character",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "Hexadecimal key identifier for the character."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by character name."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort by key or name."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86378584-9ec7-4521-8908-17d97ef83be2",
+              "name": "Successful response with list of characters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "character",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "0x0000"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Link"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amiibo\": [\n    {\n      \"key\": \"0x00\",\n      \"name\": \"Figure\"\n    },\n    {\n      \"key\": \"0x00\",\n      \"name\": \"Figure\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7495e2ed-52c7-477d-acfe-44d421a01298",
+              "name": "Character not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "character",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "0x0000"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Link"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found: The requested URL was not found on the server.\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://amiiboapi.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5b0790d7-fbb8-48ac-bb6f-374c127983f9",
+    "name": "Amiibo Reference API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AmiiboAPI is a free RESTful API providing comprehensive data about Nintendo Amiibo figures, including character details, game series, amiibo series classifications, regional release dates, and compatible game information across 3DS, Wii U, and Nintendo Switch platforms. The API requires no authentication and supports filtering by name, character, game series, type, and hexadecimal identifiers.\n\nContact Support:\n Name: Nevin Vu",
+      "type": "text/plain"
+    }
+  }
+}

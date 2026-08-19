@@ -1,0 +1,224 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amiibo API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Amiibo",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Amiibo figures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://amiiboapi.org/api/amiibo/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Full 16-character hexadecimal Amiibo identifier (combination of head and tail)."
+              },
+              {
+                "name": "head",
+                "value": "",
+                "type": "query",
+                "description": "First 8 hexadecimal characters of the Amiibo ID representing game series, character, variant, and type."
+              },
+              {
+                "name": "tail",
+                "value": "",
+                "type": "query",
+                "description": "Last 8 hexadecimal characters of the Amiibo ID representing the amiibo model and series."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Amiibo name (case-insensitive substring match)."
+              },
+              {
+                "name": "character",
+                "value": "",
+                "type": "query",
+                "description": "Filter by character name or hexadecimal character ID (prefix with 0x for hex)."
+              },
+              {
+                "name": "gameseries",
+                "value": "",
+                "type": "query",
+                "description": "Filter by game series name or hexadecimal game series ID (prefix with 0x for hex)."
+              },
+              {
+                "name": "amiiboSeries",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Amiibo series name or hexadecimal amiibo series ID (prefix with 0x for hex)."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Amiibo type name (e.g., Figure, Card, Yarn) or hexadecimal type ID (prefix with 0x for hex)."
+              },
+              {
+                "name": "variant",
+                "value": "",
+                "type": "query",
+                "description": "Filter by hexadecimal variant ID."
+              },
+              {
+                "name": "amiibo_model",
+                "value": "",
+                "type": "query",
+                "description": "Filter by hexadecimal Amiibo model ID."
+              },
+              {
+                "name": "switch_titleid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Nintendo Switch game title ID."
+              },
+              {
+                "name": "wiiu_titleid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Wii U game title ID."
+              },
+              {
+                "name": "3ds_titleid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Nintendo 3DS game title ID."
+              },
+              {
+                "name": "showgames",
+                "value": "",
+                "type": "query",
+                "description": "When present, includes compatible game data for each Amiibo (games for 3DS, Wii U, and Switch with title IDs)."
+              },
+              {
+                "name": "showusage",
+                "value": "",
+                "type": "query",
+                "description": "When present, includes compatible game data along with usage information describing how the Amiibo is used in each game."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort by. Valid values: id, head, tail, name, gameseries, gameseries_id, gameseries_name, character, character_id, character_name, variant, variant_id, type, type_id, type_name, amiibo_model, amiibo_model_id, series, series_id, series_name, release_na, release_jp, release_eu, release_au."
+              }
+            ]
+          },
+          "docs": "Returns all Amiibo figures or filters by provided query parameters. Supports optional modifiers to include compatible game data and usage information. Results can be sorted by various fields."
+        },
+        {
+          "info": {
+            "name": "Get Amiibo figures with full game compatibility data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://amiiboapi.org/api/amiibofull/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Full 16-character hexadecimal Amiibo identifier."
+              },
+              {
+                "name": "head",
+                "value": "",
+                "type": "query",
+                "description": "First 8 hexadecimal characters of the Amiibo ID."
+              },
+              {
+                "name": "tail",
+                "value": "",
+                "type": "query",
+                "description": "Last 8 hexadecimal characters of the Amiibo ID."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Amiibo name."
+              },
+              {
+                "name": "character",
+                "value": "",
+                "type": "query",
+                "description": "Filter by character name or hex ID."
+              },
+              {
+                "name": "gameseries",
+                "value": "",
+                "type": "query",
+                "description": "Filter by game series name or hex ID."
+              },
+              {
+                "name": "amiiboSeries",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Amiibo series name or hex ID."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by type name or hex ID."
+              },
+              {
+                "name": "variant",
+                "value": "",
+                "type": "query",
+                "description": "Filter by variant hex ID."
+              },
+              {
+                "name": "amiibo_model",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Amiibo model hex ID."
+              },
+              {
+                "name": "switch_titleid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Nintendo Switch game title ID."
+              },
+              {
+                "name": "wiiu_titleid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Wii U game title ID."
+              },
+              {
+                "name": "3ds_titleid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Nintendo 3DS game title ID."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort by. Valid values: id, head, tail, name, gameseries, gameseries_id, gameseries_name, switch_titleid, 3ds_titleid, wiiu_titleid, character, character_id, character_name, variant, variant_id, type, type_id, type_name, amiibo_model, amiibo_model_id, series, series_id, series_name, release_na, release_jp, release_eu, release_au."
+              }
+            ]
+          },
+          "docs": "Returns Amiibo figures with complete game compatibility information including games for 3DS, Wii U, and Nintendo Switch. Supports the same filtering and sorting parameters as /amiibo/."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

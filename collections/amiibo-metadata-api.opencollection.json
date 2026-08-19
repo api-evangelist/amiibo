@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amiibo Metadata API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get last updated timestamp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://amiiboapi.org/api/lastupdated/"
+          },
+          "docs": "Returns the timestamp indicating when the Amiibo database was last updated. Useful for cache invalidation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

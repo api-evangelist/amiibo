@@ -1,0 +1,868 @@
+{
+  "item": [
+    {
+      "id": "13ac330e-6b1f-4550-86d9-62e49532b11a",
+      "name": "Amiibo",
+      "description": {
+        "content": "Endpoints for retrieving Amiibo figure data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd38349f-2c2c-401b-8cec-cef2c9260d2d",
+          "name": "Get Amiibo figures",
+          "request": {
+            "name": "Get Amiibo figures",
+            "description": {
+              "content": "Returns all Amiibo figures or filters by provided query parameters. Supports optional modifiers to include compatible game data and usage information. Results can be sorted by various fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "amiibo",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Full 16-character hexadecimal Amiibo identifier (combination of head and tail)."
+                },
+                {
+                  "disabled": false,
+                  "key": "head",
+                  "value": "<string>",
+                  "description": "First 8 hexadecimal characters of the Amiibo ID representing game series, character, variant, and type."
+                },
+                {
+                  "disabled": false,
+                  "key": "tail",
+                  "value": "<string>",
+                  "description": "Last 8 hexadecimal characters of the Amiibo ID representing the amiibo model and series."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by Amiibo name (case-insensitive substring match)."
+                },
+                {
+                  "disabled": false,
+                  "key": "character",
+                  "value": "<string>",
+                  "description": "Filter by character name or hexadecimal character ID (prefix with 0x for hex)."
+                },
+                {
+                  "disabled": false,
+                  "key": "gameseries",
+                  "value": "<string>",
+                  "description": "Filter by game series name or hexadecimal game series ID (prefix with 0x for hex)."
+                },
+                {
+                  "disabled": false,
+                  "key": "amiiboSeries",
+                  "value": "<string>",
+                  "description": "Filter by Amiibo series name or hexadecimal amiibo series ID (prefix with 0x for hex)."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by Amiibo type name (e.g., Figure, Card, Yarn) or hexadecimal type ID (prefix with 0x for hex)."
+                },
+                {
+                  "disabled": false,
+                  "key": "variant",
+                  "value": "<string>",
+                  "description": "Filter by hexadecimal variant ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "amiibo_model",
+                  "value": "<string>",
+                  "description": "Filter by hexadecimal Amiibo model ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "switch_titleid",
+                  "value": "<string>",
+                  "description": "Filter by Nintendo Switch game title ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "wiiu_titleid",
+                  "value": "<string>",
+                  "description": "Filter by Wii U game title ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "3ds_titleid",
+                  "value": "<string>",
+                  "description": "Filter by Nintendo 3DS game title ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "showgames",
+                  "value": "<boolean>",
+                  "description": "When present, includes compatible game data for each Amiibo (games for 3DS, Wii U, and Switch with title IDs)."
+                },
+                {
+                  "disabled": false,
+                  "key": "showusage",
+                  "value": "<boolean>",
+                  "description": "When present, includes compatible game data along with usage information describing how the Amiibo is used in each game."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort by. Valid values: id, head, tail, name, gameseries, gameseries_id, gameseries_name, character, character_id, character_name, variant, variant_id, type, type_id, type_name, amiibo_model, amiibo_model_id, series, series_id, series_name, release_na, release_jp, release_eu, release_au."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be059c46-c83b-49a4-bfbf-2cef4ec4d254",
+              "name": "Successful response with list of Amiibo figures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "amiibo",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "0000000000000002"
+                    },
+                    {
+                      "key": "head",
+                      "value": "00000000"
+                    },
+                    {
+                      "key": "tail",
+                      "value": "00000002"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Link"
+                    },
+                    {
+                      "key": "character",
+                      "value": "Link"
+                    },
+                    {
+                      "key": "gameseries",
+                      "value": "The Legend of Zelda"
+                    },
+                    {
+                      "key": "amiiboSeries",
+                      "value": "Super Smash Bros."
+                    },
+                    {
+                      "key": "type",
+                      "value": "Figure"
+                    },
+                    {
+                      "key": "variant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amiibo_model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "switch_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wiiu_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "3ds_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showgames",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "showusage",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name,release_na"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amiibo\": [\n    {\n      \"amiiboSeries\": \"The Legend of Zelda\",\n      \"character\": \"Link\",\n      \"gameSeries\": \"The Legend of Zelda\",\n      \"head\": \"01000000\",\n      \"tail\": 3560902,\n      \"image\": \"https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png\",\n      \"imgwebp\": \"https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp\",\n      \"name\": \"Link\",\n      \"type\": \"Figure\",\n      \"release\": {\n        \"au\": \"2014-11-29\",\n        \"eu\": \"2014-11-28\",\n        \"jp\": \"2014-12-06\",\n        \"na\": \"2014-11-21\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e463eea-14c8-4172-b945-f5b2900414b2",
+              "name": "Bad request — invalid hex identifier format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "amiibo",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "0000000000000002"
+                    },
+                    {
+                      "key": "head",
+                      "value": "00000000"
+                    },
+                    {
+                      "key": "tail",
+                      "value": "00000002"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Link"
+                    },
+                    {
+                      "key": "character",
+                      "value": "Link"
+                    },
+                    {
+                      "key": "gameseries",
+                      "value": "The Legend of Zelda"
+                    },
+                    {
+                      "key": "amiiboSeries",
+                      "value": "Super Smash Bros."
+                    },
+                    {
+                      "key": "type",
+                      "value": "Figure"
+                    },
+                    {
+                      "key": "variant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amiibo_model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "switch_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wiiu_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "3ds_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showgames",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "showusage",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name,release_na"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found: The requested URL was not found on the server.\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3abaac83-07b4-40af-aaa9-3fc0af1500f2",
+              "name": "No Amiibo found matching the provided filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "amiibo",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "0000000000000002"
+                    },
+                    {
+                      "key": "head",
+                      "value": "00000000"
+                    },
+                    {
+                      "key": "tail",
+                      "value": "00000002"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Link"
+                    },
+                    {
+                      "key": "character",
+                      "value": "Link"
+                    },
+                    {
+                      "key": "gameseries",
+                      "value": "The Legend of Zelda"
+                    },
+                    {
+                      "key": "amiiboSeries",
+                      "value": "Super Smash Bros."
+                    },
+                    {
+                      "key": "type",
+                      "value": "Figure"
+                    },
+                    {
+                      "key": "variant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amiibo_model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "switch_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wiiu_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "3ds_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showgames",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "showusage",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name,release_na"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found: The requested URL was not found on the server.\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27460137-52cf-482e-9788-a52f2af9464f",
+          "name": "Get Amiibo figures with full game compatibility data",
+          "request": {
+            "name": "Get Amiibo figures with full game compatibility data",
+            "description": {
+              "content": "Returns Amiibo figures with complete game compatibility information including games for 3DS, Wii U, and Nintendo Switch. Supports the same filtering and sorting parameters as /amiibo/.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "amiibofull",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Full 16-character hexadecimal Amiibo identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "head",
+                  "value": "<string>",
+                  "description": "First 8 hexadecimal characters of the Amiibo ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "tail",
+                  "value": "<string>",
+                  "description": "Last 8 hexadecimal characters of the Amiibo ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by Amiibo name."
+                },
+                {
+                  "disabled": false,
+                  "key": "character",
+                  "value": "<string>",
+                  "description": "Filter by character name or hex ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "gameseries",
+                  "value": "<string>",
+                  "description": "Filter by game series name or hex ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "amiiboSeries",
+                  "value": "<string>",
+                  "description": "Filter by Amiibo series name or hex ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by type name or hex ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "variant",
+                  "value": "<string>",
+                  "description": "Filter by variant hex ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "amiibo_model",
+                  "value": "<string>",
+                  "description": "Filter by Amiibo model hex ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "switch_titleid",
+                  "value": "<string>",
+                  "description": "Filter by Nintendo Switch game title ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "wiiu_titleid",
+                  "value": "<string>",
+                  "description": "Filter by Wii U game title ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "3ds_titleid",
+                  "value": "<string>",
+                  "description": "Filter by Nintendo 3DS game title ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort by. Valid values: id, head, tail, name, gameseries, gameseries_id, gameseries_name, switch_titleid, 3ds_titleid, wiiu_titleid, character, character_id, character_name, variant, variant_id, type, type_id, type_name, amiibo_model, amiibo_model_id, series, series_id, series_name, release_na, release_jp, release_eu, release_au."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bac2b77b-9058-4e6c-9382-f95ba4f40078",
+              "name": "Successful response with Amiibo figures including full game data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "amiibofull",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "head",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tail",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "character",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "gameseries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amiiboSeries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "variant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amiibo_model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "switch_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wiiu_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "3ds_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amiibo\": [\n    {\n      \"amiiboSeries\": \"Super Smash Bros.\",\n      \"character\": \"Link\",\n      \"gameSeries\": \"The Legend of Zelda\",\n      \"head\": \"01000000\",\n      \"tail\": \"EC0B5eC7\",\n      \"image\": \"https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png\",\n      \"name\": \"Link\",\n      \"type\": \"Figure\",\n      \"release\": {\n        \"au\": \"2014-11-29\",\n        \"eu\": \"2014-11-28\",\n        \"jp\": \"2014-05-29\",\n        \"na\": \"2014-11-21\"\n      },\n      \"imgwebp\": \"https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp\",\n      \"gamesSwitch\": [\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"games3DS\": [\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"gamesWiiU\": [\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"amiiboSeries\": \"Super Smash Bros.\",\n      \"character\": \"Link\",\n      \"gameSeries\": \"The Legend of Zelda\",\n      \"head\": \"01000000\",\n      \"tail\": \"CE5afCa0\",\n      \"image\": \"https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png\",\n      \"name\": \"Link\",\n      \"type\": \"Figure\",\n      \"release\": {\n        \"au\": \"2014-11-29\",\n        \"eu\": \"2014-11-28\",\n        \"jp\": \"2014-05-29\",\n        \"na\": \"2014-11-21\"\n      },\n      \"imgwebp\": \"https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp\",\n      \"gamesSwitch\": [\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"games3DS\": [\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"gamesWiiU\": [\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"gameID\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"gameName\": \"string\",\n          \"usage\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9725b87-86b4-46ed-8bd0-43f431860881",
+              "name": "Bad request — invalid hex identifier format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "amiibofull",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "head",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tail",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "character",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "gameseries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amiiboSeries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "variant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amiibo_model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "switch_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wiiu_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "3ds_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found: The requested URL was not found on the server.\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff13069e-7ea8-4a42-b0d4-e0b0d6fea7a0",
+              "name": "No Amiibo found matching the provided filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "amiibofull",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "head",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tail",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "character",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "gameseries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amiiboSeries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "variant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amiibo_model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "switch_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wiiu_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "3ds_titleid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found: The requested URL was not found on the server.\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://amiiboapi.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2b06cd13-0e3d-44d1-b115-79c7dc487292",
+    "name": "Amiibo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AmiiboAPI is a free RESTful API providing comprehensive data about Nintendo Amiibo figures, including character details, game series, amiibo series classifications, regional release dates, and compatible game information across 3DS, Wii U, and Nintendo Switch platforms. The API requires no authentication and supports filtering by name, character, game series, type, and hexadecimal identifiers.\n\nContact Support:\n Name: Nevin Vu",
+      "type": "text/plain"
+    }
+  }
+}

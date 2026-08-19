@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amiibo Reference API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Amiibo types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://amiiboapi.org/api/type/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Hexadecimal key identifier for the type."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by type name."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by key or name."
+              }
+            ]
+          },
+          "docs": "Returns all Amiibo type classifications or filters by key or name. Types include Figure, Card, Yarn, and Band."
+        },
+        {
+          "info": {
+            "name": "Get game series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://amiiboapi.org/api/gameseries/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Hexadecimal key identifier for the game series."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by game series name."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by key or name."
+              }
+            ]
+          },
+          "docs": "Returns all game series associated with Amiibo figures or filters by hexadecimal key or name."
+        },
+        {
+          "info": {
+            "name": "Get Amiibo series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://amiiboapi.org/api/amiiboseries/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Hexadecimal key identifier for the Amiibo series."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Amiibo series name."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by key or name."
+              }
+            ]
+          },
+          "docs": "Returns all Amiibo series classifications or filters by hexadecimal key or name. Examples include Super Smash Bros., The Legend of Zelda, and Pokemon."
+        },
+        {
+          "info": {
+            "name": "Get characters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://amiiboapi.org/api/character/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Hexadecimal key identifier for the character."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by character name."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by key or name."
+              }
+            ]
+          },
+          "docs": "Returns all characters associated with Amiibo figures or filters by hexadecimal key or name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
