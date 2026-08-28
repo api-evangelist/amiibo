@@ -7,6 +7,18 @@ description: >-
   across 3DS, Wii U, and Nintendo Switch platforms. The API requires no
   authentication and supports filtering by name, character, game series, type,
   and hexadecimal identifiers.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: open
