@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Amiibo API
   description: AmiiboAPI is a free RESTful API providing comprehensive data about Nintendo Amiibo figures, including character details, game series, amiibo series classifications, regional release dates, and compatible game information across 3DS, Wii U, and Nintendo Switch platforms. The API requires no authentication and supports filtering by name, character, game series, type, and hexadecimal identifiers.
@@ -274,6 +274,46 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response body.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+          example: 'Not Found: The requested URL was not found on the server.'
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 404
+      required:
+      - error
+      - code
+    AmiiboFullListResponse:
+      type: object
+      description: Response envelope for a list of Amiibo figures with full game data.
+      properties:
+        amiibo:
+          type: array
+          items:
+            $ref: '#/components/schemas/AmiiboFull'
+      required:
+      - amiibo
+    AmiiboListResponse:
+      type: object
+      description: Response envelope for a list of Amiibo figures.
+      properties:
+        amiibo:
+          type: array
+          items:
+            $ref: '#/components/schemas/Amiibo'
+      required:
+      - amiibo
+    AmiiboFull:
+      allOf:
+      - $ref: '#/components/schemas/Amiibo'
+      - $ref: '#/components/schemas/AmiiboGamesWithUsage'
+      description: Complete Amiibo data including game compatibility and usage information.
     GameUsageEntry:
       type: object
       description: A game compatible with the Amiibo including usage information.
@@ -298,6 +338,25 @@ components:
               write:
                 type: boolean
                 description: Whether this Amiibo can be written to by this game.
+    AmiiboGamesWithUsage:
+      type: object
+      description: Compatible games with usage data organized by platform.
+      properties:
+        gamesSwitch:
+          type: array
+          description: Compatible Nintendo Switch games with usage info.
+          items:
+            $ref: '#/components/schemas/GameUsageEntry'
+        games3DS:
+          type: array
+          description: Compatible Nintendo 3DS games with usage info.
+          items:
+            $ref: '#/components/schemas/GameUsageEntry'
+        gamesWiiU:
+          type: array
+          description: Compatible Wii U games with usage info.
+          items:
+            $ref: '#/components/schemas/GameUsageEntry'
     Amiibo:
       type: object
       description: Core Amiibo figure data.
@@ -354,93 +413,38 @@ components:
       - name
       - type
       - release
-    ErrorResponse:
-      type: object
-      description: Error response body.
-      properties:
-        error:
-          type: string
-          description: Human-readable error message.
-          example: 'Not Found: The requested URL was not found on the server.'
-        code:
-          type: integer
-          description: HTTP status code.
-          example: 404
-      required:
-      - error
-      - code
-    AmiiboGamesWithUsage:
-      type: object
-      description: Compatible games with usage data organized by platform.
-      properties:
-        gamesSwitch:
-          type: array
-          description: Compatible Nintendo Switch games with usage info.
-          items:
-            $ref: '#/components/schemas/GameUsageEntry'
-        games3DS:
-          type: array
-          description: Compatible Nintendo 3DS games with usage info.
-          items:
-            $ref: '#/components/schemas/GameUsageEntry'
-        gamesWiiU:
-          type: array
-          description: Compatible Wii U games with usage info.
-          items:
-            $ref: '#/components/schemas/GameUsageEntry'
-    AmiiboFull:
-      allOf:
-      - $ref: '#/components/schemas/Amiibo'
-      - $ref: '#/components/schemas/AmiiboGamesWithUsage'
-      description: Complete Amiibo data including game compatibility and usage information.
-    AmiiboListResponse:
-      type: object
-      description: Response envelope for a list of Amiibo figures.
-      properties:
-        amiibo:
-          type: array
-          items:
-            $ref: '#/components/schemas/Amiibo'
-      required:
-      - amiibo
     AmiiboRelease:
       type: object
       description: Regional release dates for the Amiibo figure.
       properties:
         au:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: Release date in Australia (YYYY-MM-DD) or null if not released.
           example: '2014-11-29'
         eu:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: Release date in Europe (YYYY-MM-DD) or null if not released.
           example: '2014-11-28'
         jp:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: Release date in Japan (YYYY-MM-DD) or null if not released.
           example: '2014-05-29'
         na:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: Release date in North America (YYYY-MM-DD) or null if not released.
           example: '2014-11-21'
-    AmiiboFullListResponse:
-      type: object
-      description: Response envelope for a list of Amiibo figures with full game data.
-      properties:
-        amiibo:
-          type: array
-          items:
-            $ref: '#/components/schemas/AmiiboFull'
-      required:
-      - amiibo
   examples:
     AmiiboWithGamesExample:
       summary: Amiibo with game compatibility data (showgames)

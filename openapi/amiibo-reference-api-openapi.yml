@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Amiibo Reference API
   description: AmiiboAPI is a free RESTful API providing comprehensive data about Nintendo Amiibo figures, including character details, game series, amiibo series classifications, regional release dates, and compatible game information across 3DS, Wii U, and Nintendo Switch platforms. The API requires no authentication and supports filtering by name, character, game series, type, and hexadecimal identifiers.
@@ -201,16 +201,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ReferenceListResponse:
-      type: object
-      description: Response envelope for a list of reference data items.
-      properties:
-        amiibo:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReferenceItem'
-      required:
-      - amiibo
     ReferenceItem:
       type: object
       description: A reference data item with a hexadecimal key and name.
@@ -241,6 +231,16 @@ components:
       required:
       - error
       - code
+    ReferenceListResponse:
+      type: object
+      description: Response envelope for a list of reference data items.
+      properties:
+        amiibo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceItem'
+      required:
+      - amiibo
   examples:
     TypeListExample:
       summary: List of Amiibo types

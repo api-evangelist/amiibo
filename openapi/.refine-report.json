@@ -1,9 +1,7 @@
 {
   "provider": "amiibo",
   "sources": [
-    "amiibo-amiibo-api-openapi.yml",
-    "amiibo-metadata-api-openapi.yml",
-    "amiibo-reference-api-openapi.yml"
+    "_original/amiibo-openapi.yml"
   ],
   "outputs": [
     "amiibo-amiibo-api-openapi.yml",
@@ -13,6 +11,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amiibo-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "amiibo-amiibo-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amiibo-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amiibo-reference-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
