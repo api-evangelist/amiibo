@@ -274,70 +274,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response body.
-      properties:
-        error:
-          type: string
-          description: Human-readable error message.
-          example: 'Not Found: The requested URL was not found on the server.'
-        code:
-          type: integer
-          description: HTTP status code.
-          example: 404
-      required:
-      - error
-      - code
-    AmiiboFullListResponse:
-      type: object
-      description: Response envelope for a list of Amiibo figures with full game data.
-      properties:
-        amiibo:
-          type: array
-          items:
-            $ref: '#/components/schemas/AmiiboFull'
-      required:
-      - amiibo
-    AmiiboListResponse:
-      type: object
-      description: Response envelope for a list of Amiibo figures.
-      properties:
-        amiibo:
-          type: array
-          items:
-            $ref: '#/components/schemas/Amiibo'
-      required:
-      - amiibo
-    AmiiboFull:
-      allOf:
-      - $ref: '#/components/schemas/Amiibo'
-      - $ref: '#/components/schemas/AmiiboGamesWithUsage'
-      description: Complete Amiibo data including game compatibility and usage information.
-    GameUsageEntry:
-      type: object
-      description: A game compatible with the Amiibo including usage information.
-      properties:
-        gameID:
-          type: array
-          description: List of title IDs for this game on the platform.
-          items:
-            type: string
-        gameName:
-          type: string
-          description: Name of the compatible game.
-        usage:
-          type: array
-          description: List of usage descriptions for this Amiibo in the game.
-          items:
-            type: object
-            properties:
-              Usage:
-                type: string
-                description: Description of how the Amiibo is used in this game.
-              write:
-                type: boolean
-                description: Whether this Amiibo can be written to by this game.
     AmiiboGamesWithUsage:
       type: object
       description: Compatible games with usage data organized by platform.
@@ -413,6 +349,31 @@ components:
       - name
       - type
       - release
+    ErrorResponse:
+      type: object
+      description: Error response body.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+          example: 'Not Found: The requested URL was not found on the server.'
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 404
+      required:
+      - error
+      - code
+    AmiiboListResponse:
+      type: object
+      description: Response envelope for a list of Amiibo figures.
+      properties:
+        amiibo:
+          type: array
+          items:
+            $ref: '#/components/schemas/Amiibo'
+      required:
+      - amiibo
     AmiiboRelease:
       type: object
       description: Regional release dates for the Amiibo figure.
@@ -445,7 +406,64 @@ components:
           format: date
           description: Release date in North America (YYYY-MM-DD) or null if not released.
           example: '2014-11-21'
+    GameUsageEntry:
+      type: object
+      description: A game compatible with the Amiibo including usage information.
+      properties:
+        gameID:
+          type: array
+          description: List of title IDs for this game on the platform.
+          items:
+            type: string
+        gameName:
+          type: string
+          description: Name of the compatible game.
+        usage:
+          type: array
+          description: List of usage descriptions for this Amiibo in the game.
+          items:
+            type: object
+            properties:
+              Usage:
+                type: string
+                description: Description of how the Amiibo is used in this game.
+              write:
+                type: boolean
+                description: Whether this Amiibo can be written to by this game.
+    AmiiboFullListResponse:
+      type: object
+      description: Response envelope for a list of Amiibo figures with full game data.
+      properties:
+        amiibo:
+          type: array
+          items:
+            $ref: '#/components/schemas/AmiiboFull'
+      required:
+      - amiibo
+    AmiiboFull:
+      allOf:
+      - $ref: '#/components/schemas/Amiibo'
+      - $ref: '#/components/schemas/AmiiboGamesWithUsage'
+      description: Complete Amiibo data including game compatibility and usage information.
   examples:
+    AmiiboListExample:
+      summary: List of Amiibo figures (basic)
+      value:
+        amiibo:
+        - amiiboSeries: The Legend of Zelda
+          character: Link
+          gameSeries: The Legend of Zelda
+          head: '01000000'
+          tail: 03560902
+          image: https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png
+          imgwebp: https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp
+          name: Link
+          type: Figure
+          release:
+            au: '2014-11-29'
+            eu: '2014-11-28'
+            jp: '2014-12-06'
+            na: '2014-11-21'
     AmiiboWithGamesExample:
       summary: Amiibo with game compatibility data (showgames)
       value:
@@ -476,24 +494,6 @@ components:
           - gameID:
             - 0005000010145F00
             gameName: Hyrule Warriors
-    AmiiboListExample:
-      summary: List of Amiibo figures (basic)
-      value:
-        amiibo:
-        - amiiboSeries: The Legend of Zelda
-          character: Link
-          gameSeries: The Legend of Zelda
-          head: '01000000'
-          tail: 03560902
-          image: https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.png
-          imgwebp: https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_01000000-03560902.webp
-          name: Link
-          type: Figure
-          release:
-            au: '2014-11-29'
-            eu: '2014-11-28'
-            jp: '2014-12-06'
-            na: '2014-11-21'
 externalDocs:
   description: Official AmiiboAPI Documentation
   url: https://amiiboapi.org/docs/

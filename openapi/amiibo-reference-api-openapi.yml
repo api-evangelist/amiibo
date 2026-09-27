@@ -216,6 +216,16 @@ components:
       required:
       - key
       - name
+    ReferenceListResponse:
+      type: object
+      description: Response envelope for a list of reference data items.
+      properties:
+        amiibo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceItem'
+      required:
+      - amiibo
     ErrorResponse:
       type: object
       description: Error response body.
@@ -231,16 +241,6 @@ components:
       required:
       - error
       - code
-    ReferenceListResponse:
-      type: object
-      description: Response envelope for a list of reference data items.
-      properties:
-        amiibo:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReferenceItem'
-      required:
-      - amiibo
   examples:
     TypeListExample:
       summary: List of Amiibo types
