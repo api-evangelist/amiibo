@@ -201,21 +201,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ReferenceItem:
-      type: object
-      description: A reference data item with a hexadecimal key and name.
-      properties:
-        key:
-          type: string
-          description: Hexadecimal key identifier.
-          example: '0x00'
-        name:
-          type: string
-          description: Human-readable name.
-          example: Figure
-      required:
-      - key
-      - name
     ReferenceListResponse:
       type: object
       description: Response envelope for a list of reference data items.
@@ -241,6 +226,21 @@ components:
       required:
       - error
       - code
+    ReferenceItem:
+      type: object
+      description: A reference data item with a hexadecimal key and name.
+      properties:
+        key:
+          type: string
+          description: Hexadecimal key identifier.
+          example: '0x00'
+        name:
+          type: string
+          description: Human-readable name.
+          example: Figure
+      required:
+      - key
+      - name
   examples:
     TypeListExample:
       summary: List of Amiibo types

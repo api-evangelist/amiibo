@@ -274,6 +274,30 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    GameUsageEntry:
+      type: object
+      description: A game compatible with the Amiibo including usage information.
+      properties:
+        gameID:
+          type: array
+          description: List of title IDs for this game on the platform.
+          items:
+            type: string
+        gameName:
+          type: string
+          description: Name of the compatible game.
+        usage:
+          type: array
+          description: List of usage descriptions for this Amiibo in the game.
+          items:
+            type: object
+            properties:
+              Usage:
+                type: string
+                description: Description of how the Amiibo is used in this game.
+              write:
+                type: boolean
+                description: Whether this Amiibo can be written to by this game.
     AmiiboGamesWithUsage:
       type: object
       description: Compatible games with usage data organized by platform.
@@ -349,21 +373,21 @@ components:
       - name
       - type
       - release
-    ErrorResponse:
+    AmiiboFullListResponse:
       type: object
-      description: Error response body.
+      description: Response envelope for a list of Amiibo figures with full game data.
       properties:
-        error:
-          type: string
-          description: Human-readable error message.
-          example: 'Not Found: The requested URL was not found on the server.'
-        code:
-          type: integer
-          description: HTTP status code.
-          example: 404
+        amiibo:
+          type: array
+          items:
+            $ref: '#/components/schemas/AmiiboFull'
       required:
-      - error
-      - code
+      - amiibo
+    AmiiboFull:
+      allOf:
+      - $ref: '#/components/schemas/Amiibo'
+      - $ref: '#/components/schemas/AmiiboGamesWithUsage'
+      description: Complete Amiibo data including game compatibility and usage information.
     AmiiboListResponse:
       type: object
       description: Response envelope for a list of Amiibo figures.
@@ -406,45 +430,21 @@ components:
           format: date
           description: Release date in North America (YYYY-MM-DD) or null if not released.
           example: '2014-11-21'
-    GameUsageEntry:
+    ErrorResponse:
       type: object
-      description: A game compatible with the Amiibo including usage information.
+      description: Error response body.
       properties:
-        gameID:
-          type: array
-          description: List of title IDs for this game on the platform.
-          items:
-            type: string
-        gameName:
+        error:
           type: string
-          description: Name of the compatible game.
-        usage:
-          type: array
-          description: List of usage descriptions for this Amiibo in the game.
-          items:
-            type: object
-            properties:
-              Usage:
-                type: string
-                description: Description of how the Amiibo is used in this game.
-              write:
-                type: boolean
-                description: Whether this Amiibo can be written to by this game.
-    AmiiboFullListResponse:
-      type: object
-      description: Response envelope for a list of Amiibo figures with full game data.
-      properties:
-        amiibo:
-          type: array
-          items:
-            $ref: '#/components/schemas/AmiiboFull'
+          description: Human-readable error message.
+          example: 'Not Found: The requested URL was not found on the server.'
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 404
       required:
-      - amiibo
-    AmiiboFull:
-      allOf:
-      - $ref: '#/components/schemas/Amiibo'
-      - $ref: '#/components/schemas/AmiiboGamesWithUsage'
-      description: Complete Amiibo data including game compatibility and usage information.
+      - error
+      - code
   examples:
     AmiiboListExample:
       summary: List of Amiibo figures (basic)
