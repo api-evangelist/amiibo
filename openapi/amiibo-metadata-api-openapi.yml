@@ -34,11 +34,6 @@ paths:
                 lastUpdated:
                   $ref: '#/components/examples/LastUpdatedExample'
 components:
-  examples:
-    LastUpdatedExample:
-      summary: Last updated timestamp
-      value:
-        lastUpdated: '2023-10-01T00:00:00+01:00'
   schemas:
     LastUpdatedResponse:
       type: object
@@ -51,6 +46,11 @@ components:
           example: '2023-10-01T00:00:00+01:00'
       required:
       - lastUpdated
+  examples:
+    LastUpdatedExample:
+      summary: Last updated timestamp
+      value:
+        lastUpdated: '2023-10-01T00:00:00+01:00'
 externalDocs:
   description: Official AmiiboAPI Documentation
   url: https://amiiboapi.org/docs/

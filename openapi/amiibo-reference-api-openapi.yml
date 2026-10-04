@@ -200,32 +200,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  schemas:
-    ReferenceListResponse:
-      type: object
-      description: Response envelope for a list of reference data items.
-      properties:
+  examples:
+    TypeListExample:
+      summary: List of Amiibo types
+      value:
         amiibo:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReferenceItem'
-      required:
-      - amiibo
-    ErrorResponse:
-      type: object
-      description: Error response body.
-      properties:
-        error:
-          type: string
-          description: Human-readable error message.
-          example: 'Not Found: The requested URL was not found on the server.'
-        code:
-          type: integer
-          description: HTTP status code.
-          example: 404
-      required:
-      - error
-      - code
+        - key: '0x00'
+          name: Figure
+        - key: '0x01'
+          name: Card
+        - key: '0x02'
+          name: Yarn
+        - key: '0x03'
+          name: Band
+  schemas:
     ReferenceItem:
       type: object
       description: A reference data item with a hexadecimal key and name.
@@ -241,19 +229,31 @@ components:
       required:
       - key
       - name
-  examples:
-    TypeListExample:
-      summary: List of Amiibo types
-      value:
+    ErrorResponse:
+      type: object
+      description: Error response body.
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+          example: 'Not Found: The requested URL was not found on the server.'
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 404
+      required:
+      - error
+      - code
+    ReferenceListResponse:
+      type: object
+      description: Response envelope for a list of reference data items.
+      properties:
         amiibo:
-        - key: '0x00'
-          name: Figure
-        - key: '0x01'
-          name: Card
-        - key: '0x02'
-          name: Yarn
-        - key: '0x03'
-          name: Band
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceItem'
+      required:
+      - amiibo
 externalDocs:
   description: Official AmiiboAPI Documentation
   url: https://amiiboapi.org/docs/
